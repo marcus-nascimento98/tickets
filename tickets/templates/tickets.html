@@ -8,13 +8,12 @@
     <div class="testimonial-item">
       <h3>{{ ticket.name_user }}</h3>
       <p><strong>Filial:</strong> {{ ticket.branch }}</p>
-      <p><strong>Data:</strong> {{ ticket.date }}</p>
+      <p><strong>Criação:</strong> {{ ticket.date }}</p>
       <p><strong>Assunto:</strong> {{ ticket.subject_purchase }}</p>
       <p><strong>Observação:</strong> {{ ticket.description }}</p>
-
-      {% if ticket.reason_for_rejection %}
-      <p><strong>Motivo da Rejeição:</strong> {{ ticket.reason_for_rejection }}</p>
-      {% endif %}
+      {% if ticket.who_approved %}<p><strong>Aprovado Por:</strong> {{ ticket.who_approved }}</p>{% endif %}
+      {% if ticket.date_approved %}<p><strong>Data Aprovação:</strong> {{ ticket.date_approved }}</p>{% endif %}
+      {% if ticket.reason_for_rejection %}<p><strong>Motivo da Rejeição:</strong> {{ ticket.reason_for_rejection }}</p>{% endif %}
 
       <h4>Cotações:</h4>
       <form method="post" action="{% url 'tickets_list' %}">

@@ -8,6 +8,7 @@ from tickets.models import Ticket
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -93,6 +94,9 @@ class TicketStatusUpdate(View):
 
         if selected_quote_id:
             ticket.quote_ticket.update(status=0)
+            ticket.who_approved = request.user.username
+            ticket.date_approved = timezone.now()
+            ticket.save()
 
             selected_quote = get_object_or_404(ticket.quote_ticket, id=selected_quote_id)
             selected_quote.status = 1

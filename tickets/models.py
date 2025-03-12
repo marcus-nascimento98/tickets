@@ -19,6 +19,8 @@ class Ticket(models.Model):
     description = models.CharField("Observação", blank=True, null=True, max_length=500)
     status_ticket = models.IntegerField(default=1, editable=True)
     reason_for_rejection = models.CharField("Motivo da Rejeição", max_length=200, blank=True, null=True)
+    who_approved = models.CharField("Gestor que aprovou", max_length=100, blank=True, null=True)
+    date_approved = models.DateTimeField("Data Aprovado", blank=True, null=True)
 
     def __str__(self):
         return self.subject_purchase

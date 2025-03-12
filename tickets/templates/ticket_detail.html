@@ -5,13 +5,12 @@
     <div class="testimonial-item">
         <h3>{{ object.name_user }}</h3>
         <p><strong>Filial:</strong> {{ object.branch }}</p>
-        <p><strong>Data:</strong> {{ object.date }}</p>
+        <p><strong>Criação:</strong> {{ object.date }}</p>
         <p><strong>Assunto:</strong> {{ object.subject_purchase }}</p>
         <p><strong>Observação:</strong> {{ object.description }}</p>
-
-        {% if object.reason_for_rejection %}
-        <p><strong>Motivo da Rejeição:</strong> {{ object.reason_for_rejection }}</p>
-        {% endif %}
+        {% if object.who_approved %}<p><strong>Aprovado Por:</strong> {{ object.who_approved }}</p>{% endif %}
+        {% if object.date_approved %}<p><strong>Data Aprovação:</strong> {{ object.date_approved }}</p>{% endif %}
+        {% if object.reason_for_rejection %}<p><strong>Motivo da Rejeição:</strong> {{ object.reason_for_rejection }}</p>{% endif %}
 
         <h4>Cotações:</h4>
         <form method="post" action="{% url 'ticket_status' object.pk %}">
@@ -45,7 +44,7 @@
             {% endif %}
 
             {% if request.user.is_superuser %}
-            <button type="submit" class="btn-save">Salvar</button>
+            <button type="submit" class="btn-save">Aprovar</button>
             <button type="submit" class="btn-save" id="reject_button" name="status_ticket" value="0">Rejeitar</button>
             {% endif %}
 
