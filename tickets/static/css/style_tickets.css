@@ -224,10 +224,57 @@ h4 {
 }
 
 .rejected-ticket .testimonial-item {
-  background-color: rgb(255, 255, 255);
-  border-style: solid;
-  border-color: #df0032;
+  background: linear-gradient(to bottom, #ffeded 20%, white 50%);
+  border-left: 5px solid #df0032;
+  position: relative;
 }
+
+.rejected-ticket .testimonial-item::before {
+  content: "Rejeitado";
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #df0032;
+  background-color: rgba(223, 0, 50, 0.1);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+
+#ticket-detail-rejected {
+  background: linear-gradient(to bottom, #ffeded 20%, white 50%);
+  border-left: 5px solid #df0032;
+  position: relative;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+#ticket-detail-rejected::before {
+  content: "Rejeitado";
+  position: absolute;
+  top: 5px;
+  right: 10px;  /* Alterado para a direita */
+  font-size: 12px;
+  font-weight: bold;
+  color: #df0032;
+  background-color: rgba(223, 0, 50, 0.1);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 .selected-quote strong {
   color: #2e7d32;
@@ -242,7 +289,6 @@ h4 {
 #ticket-edit-container {
   max-width: 700px;
   margin: 30px auto;
-
   border-radius: 10px;
 }
 

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="car-grid" id="ticket_detail">
-    <div class="testimonial-item">
+    <div class="testimonial-item" {% if ticket.status_ticket == 0 %} id="ticket-detail-rejected" {% endif %}>
         <h3>{{ object.name_user }}</h3>
         <p><strong>Filial:</strong> {{ object.branch }}</p>
         <p><strong>Criação:</strong> {{ object.date }}</p>
@@ -23,7 +23,8 @@
             <div class="quote-item">
                 <label class="quote-label">
                     <input type="radio" name="selected_quote" value="{{ quote.id }}"
-                        {% if quote.status == 1 %}checked{% endif %}>
+                        {% if quote.status == 1 %}checked{% endif %}
+                        {% if ticket.status_ticket == 0 or not request.user.is_superuser %}disabled{% endif %}>
                     <div class="quote-description">
                         <strong>Descrição:</strong> {{ quote.description_quotes }}
                     </div>
@@ -40,12 +41,13 @@
             </div>
             {% endif %}
             {% endfor %}
-
             {% endif %}
 
-            {% if request.user.is_superuser %}
+            {% if request.user.is_superuser and ticket.status_ticket == 1%}
             <button type="submit" class="btn-save">Aprovar</button>
             <button type="submit" class="btn-save" id="reject_button" name="status_ticket" value="0">Rejeitar</button>
+            {% elif request.user.is_superuser %}
+
             {% endif %}
 
             <div>
@@ -53,7 +55,7 @@
             </div>
             <input type="button" class="btn-save" id="update_button" value="Editar"
                 onclick="window.location.href=document.getElementById('edit_link').href;">
-
+            
         </form>
     </div>
 </div>

@@ -50,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'app.middlewares.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -86,6 +88,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -127,3 +130,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'accounts/static',
     BASE_DIR / 'tickets/static',
 ]
+
+SESSION_COOKIE_AGE = 900
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
